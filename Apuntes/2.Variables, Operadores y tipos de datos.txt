@@ -1,0 +1,117 @@
+-- 2.1 Variables --
+En la primera linea se declara la [package main]
+Go es lenguaje de tipo estatico, de manera que no se puede cambiar los valores
+entre diferentes tipos de datos.
+Los que hace (:=) es declarar una variable y no se puede declarar esta dos veces.
+    //fmt es un paquete que nos permite imprimir en la consola
+    import "fmt"
+    func main() {
+    //Estructura var-nombrevariable-tipodato.
+     var a1,a2 string = "Scully","Worfer"
+    //tambien se puede de esta manera.
+    var dog,cat = "Scully","Worfer"
+    //Tambien se puede de esta manera.
+    bro := "Scullys"
+    bro2 := "Worfers"
+    
+    fmt.Println(dog,cat)
+    fmt.Println(bro,bro2)
+    fmt.Println(a1,a2)
+
+-- 2.2 Constantes --
+Es la misma sintaxis pero se cambia (var) por (const).
+El valor que se asigna no se puede cambiar, por lo que si lo intentamos, falla.
+Otra diferencia es que no podemos usar e l operador de variable corta.
+Usamos la variable const para hacer una variable constante.
+    
+    const pi = 3.14
+    fmt.Print(pi)
+
+-- 2.3 Comentarios --
+Se tiene dos tipos de comentarios el de una sola linea (//) y (/* */) para multilinea.
+Usar los multilinea para código que no se va a utilizar y para lo demas comentario de una sola linea.
+Para ver todos los comentarios de un documento es con [go doc --all]
+En linea ponemos [godoc.org/mirespositoriodegithub y se generara.]
+
+--2.4 Tipos de datos --
+Los basicos de go son {bool,string , numeric}
+Los tipos de dato numerico son
+unit (almacena numero sin signos osea positivos)
+- unit8 (0 - 255)
+- unit16 (0 - 65535)
+- unit32 (0 - 4294967295)
+- unit64 (0- 18446744073709551615)
+
+int (almacena numero desde tipo negativo a positivo)
+- int8 (-128 - 127)
+- int16 (-32768 - 32767)
+- int32 (-2147483648 - 2147483647)
+- int64 (-9223372036854775808 -9223372036854775807)
+
+byte (alias para unit8)
+
+rune (alias para int32 representado a Unicode code point)
+
+float32, float64
+
+Operador blank (_) que queremos mantener una variable y no se puede usar (:=)
+por lo que solo se utilizaria el (=) 
+
+El valor 0 para el booleano es (false).
+    var a bool = true
+    //verbos de formato
+    //{%} el porcentaje y la letra que se utiliza y para un tipo de dato es %T
+    //Para una variable es %v.
+    //para tipo de dato numerico es %q
+    var b string = "EDteam"
+    // var c rune = 'a'
+    //tambien se puede mandar variables del unicode
+    var d uint8 = 100
+    var e uint16 = 23000
+    //No podemos sumarlos por que son diferentes pero podemos usar el casting
+    //para cambiarlos a un tipo de dato que si se pueda sumar.
+    x := uint16(d) + e
+    _ = 234
+    var _ string = "test"
+
+    fmt.Printf("Tipo %T: Valor: %v", a, a)
+    fmt.Printf("Tipo %T: Valor: %v", b, b)
+    fmt.Printf("Tipo %T: Valor: %v", x, x)
+
+-- 2.5 Operadores Aritméticos y de asignación --
+Operadores Aritméticos": (),*,/,%,+,-
+
+Operadores de Asignación: =, +=, -=, *=, /=, %=
+
+En go no existen los operadores de preincremente o predecremento.
+Declaración post-incremento y post-decremento: ++, --
+(No son expresiones sino una declaración).
+    var a = 4 + 2
+    fmt.Println(a)
+
+    var b = 10
+
+    b += 2
+    //+= Sume 2 y se lo agregue a b
+    fmt.Println(b)
+
+    var c = 3
+    // c = c++ + 2 //Esto no es valido.
+    //Si quiero incrementar seria como
+    c++ //Esto le suma 1 a la variable o -- para restarle uno.
+    fmt.Println(c)
+
+-- 2.6 Operadores de comparación y lógicos --
+Operadores de comparación: >,<, ==, !=, >-, <=
+
+Operadores Lógicos: &&, ||
+
+Unario: !
+
+fmt.Println(4 != 5)
+    var age = 30
+    fmt.Println("adulto: ",  age >= 18 && age <= 60)
+    //El otro operador es inverso de que si la edad es para un niño o tercera edad
+    fmt.Println("niño o viejo: ",  age < 18 || age > 60)
+    //El unitario inverte el valor booleano
+    fmt.Println(!(4 == 4 ))

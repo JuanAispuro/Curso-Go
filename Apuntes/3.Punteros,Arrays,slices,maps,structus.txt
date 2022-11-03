@@ -1,0 +1,43 @@
+-- 3.1 Punteros --
+Operador de desreferenciación es el (*).
+tipo *p = retornara el valor que esta almacenado en la dirección de memoria,
+que estamos apuntando
+    fruit := "apple"
+	var p *string
+	p = &fruit
+	//Imprimios la dirección de memoria de la variable fruit
+	fmt.Printf("Tipo: %T, Valor: %s, Dirección: %v",fruit,fruit,&fruit)
+	fmt.Printf("Tipo: %T, Valor: %v,Desferenciación: %s\n",p,p,*p)
+	//Crear una variable de tipo puntero que apunte a la variable fruit
+
+[Resultado]: Tipo: string, Valor: apple, Dirección: 0xc000052250
+    Tipo: *string, Valor: 0xc000052250,Desferenciación: apple
+
+-- 3.2 Arrays --
+//Indicamos las posiciones que tendra el array.
+	/*var food [3]string tendra 3 posiciones y seran de tipo stirng.
+	food[0] = "Hamburguesa"
+	food[1] = "Pizza"
+	food[2] = "Hot Dog"
+	food[3] = "Papas Fritas"
+	//Este tendra un error por que el arreglo dijimos que solo seria de 3.
+	*/
+	//Arrays literales.
+	food :=[3]string{"Hamburguesa","Pizza","Hot Dog"}
+	fmt.Println(food)
+
+-- 3.4 Slices Parte (1) --
+Un slice es un apuntador de arrays.
+	set:= [7]string{"Leon","Caballo","Vaca","Mariposa","Pajaro","Avioneta","Avion"}
+	//Slice de animales
+	//Indice inicial e indice final, leon hasta pajaro
+	animals := set[0:5]
+	//Toma desde la posición 0 hasta la 5
+	fly := set[3:7]
+	fly[0] = "Dragon"
+	//Los slice no poseen datos, son apuntadores de un array, por lo que si cambia
+	// el slice de mariposa al slice de dragon.
+	fmt.Println("Array: ",set)
+	fmt.Println("Animales: ", animals)
+	fmt.Println("Voladores: ", fly[0])
+
