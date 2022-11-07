@@ -37,3 +37,6 @@ func Spanish() string {
 Administrar la dependencia y controlar los paquetes.
 go mod init "Nombre del modulo"
  
+
+-- 7.4 Importar paquetes de terceros --
+- [go build]
