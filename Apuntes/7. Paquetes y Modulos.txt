@@ -1,0 +1,39 @@
+-- 7.1 Paquetes --
+Para crear nuestros paquetes, Un paquete es una carpeta de archivos que utilizaremos.
+Utilziar variables para usarlas en todas las funciones dentro del paquete.
+ [Variables a nivel paquete] no se puede usar con el variable corta (:=) tiene que ser con var.
+ Indicar con la primera letra si es [Mayuscula] Go tiene que exportarla y si es miniscula no lo hara.
+
+paquetes.Go
+fmt.Println("Hola mundo")
+greet.English()
+
+
+    package greet
+    var emoji = "👋"
+//English retorna un saludo en ingles.
+func English() string {
+	return "Hi " + emoji
+}
+
+//Italian retorna un saludo en italiano.
+func Italian() string {
+	return "Ciao " + emoji
+}	
+//Spanish retorna un saludo en espanol.
+func Spanish() string {
+	return "Hola " + emoji
+}
+
+-- 7.2 Subir repo a Github --
+
+1. Git init (iniciar repo)
+2. Git add . (Anadir todos los archivos)
+3. Git commit -m (Ponemos el commit )
+4. Git remote add origin "Direccion"( dirección del github)
+5. Git push -u origin main (Subir los cambios.)
+
+-- 7.3 Crear un modulo --
+Administrar la dependencia y controlar los paquetes.
+go mod init "Nombre del modulo"
+ 

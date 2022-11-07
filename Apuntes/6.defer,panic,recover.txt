@@ -1,0 +1,97 @@
+ -- 6.1 Defer Parte 1 --
+ Permite diferir algo [aplazar] la ejecución de una función, hasta que finalice o retorne la función
+ puesta.
+
+    func main(){
+        /*
+        defer fmt.Println(3)
+        defer fmt.Println(2)
+        defer fmt.Println(1)
+        */
+        //Agrega las defer hasta la pila de ejecución y la envia a la parte superior de la pila
+        //Por eso ejecuta desde la ultima hasta la primera.
+        a := 5
+        defer fmt.Println("Defer: ", a)
+
+        a = 10
+        fmt.Println(a)
+    }
+
+-- 6.2 Defer parte 2 --
+Sirve para cerrar archivos de red, controladores de bases de datos, etc.
+usamos [cat] para ver la info del archivos
+
+    import ("os"
+    "fmt")
+
+    func main(){
+        //creamos un archivo hello.txt y nos regresa un puntero de error o file.
+        file, err := os.Create("Hello.txt")
+        if err != nil {
+            fmt.Printf("Ocurrio un error al crear el archivo: %v", err)
+            return
+        }
+        defer file.Close()
+        //Escribir en el archivo
+        //Le reasignamos un valor a error 
+        _,err = file.Write([]byte ("Hello There!"))
+        if err != nil {
+            //si no agarra cerramos el archivo ya no sera necesario por el defer
+            // file.Close()
+            fmt.Printf("Ocurrio un error escribir el archivo: %v", err)
+            return
+        }
+    }
+
+-- 6.3 Panic --
+La función panic nos permite entrar en panico
+Finalizar el programa cuando se utiliza el panic.
+Tambien se rastrea la ubicacion del panic.
+    func main() {
+        division(10,2)
+        division(40,3)
+        division(12,0)
+        division(20,4)
+        //Se ejecutan las primeras 2 pero el panic se efectua en la tercera
+    }
+
+    func division(diviendo, divisor int) {
+        validarDivisor(divisor)
+        fmt.Println(diviendo / divisor)
+    }
+
+    func validarDivisor(divisor int){
+        if divisor == 0 {
+            panic("Panic")
+        }
+    }
+
+-- 6.4 Recover --
+import "fmt"
+
+func main() {
+	division(10,2)
+	division(40,3)
+	division(12,0)
+	division(20,4)
+	//Se ejecutan las primeras 2 pero el panic se efectua en la tercera
+}
+
+func division(diviendo, divisor int) {
+	//siempre se ejecute cuando se imprima o haya un panic
+	defer func (){
+		if r:= recover(); r != nil {
+			//osea que esto pasara cuando haya un Panic
+			fmt.Println("Recuperandose del panic", r)
+			//controlamos el error y no se rompe el programa
+		}
+	}()
+	validarDivisor(divisor)
+	fmt.Println(diviendo / divisor)
+}
+
+func validarDivisor(divisor int){
+	if divisor == 0 {
+		panic("Panic")
+	}
+}

@@ -41,3 +41,100 @@ Un slice es un apuntador de arrays.
 	fmt.Println("Animales: ", animals)
 	fmt.Println("Voladores: ", fly[0])
 
+-- 3.4 Slices Parte (2) --
+Cuando se usa la función append, se utiliza una función de 4 elementos en este caso,
+pero cuando llega a la capacidad máxima Go hace un nuevo array, duplicando la capacidad anterior
+por lo que si anters era 4 ahora seria 8, tomaria los elementos del slice en este caso fruta y los incluye en el nuevo array,
+retornando el slice que apunta el nuevo slice, perdiendo la referencia del array anterior.
+
+nil es el valor nullo de los slices.
+	/*
+	food := [5]string{"Hot dog","Fresa","Limon","Hamburguesa","Pizza"} 
+	fruits := food[1:3]
+	fruits = append(fruits, "Pina", "Melon","Pera") //Append para agregar un elemento al slice.
+	//append agrega el elemento en la ultima posición.
+
+	fmt.Println("food: ", food)
+	fmt.Println("fruits: ",fruits)
+	//se usa función len para saber el numero de elementos del slice.
+	fmt.Println("tamano: ", len(fruits))
+	fmt.Println("tamano: ", cap(fruits)) //Cap es la capacidad del slice.
+	*/
+
+	/*
+	Creamos un slice de string
+	fruits := []string {"Fresa","Limon"}
+	fruits := make([]string,0,3) // Creamos slice vacio y le ponemos tamano 0  y cap 3.
+	fruits = append(fruits, "Fresa","Limon","Pina","Melon")
+	fmt.Println("Fruist: ", fruits)
+	fmt.Println("Tamano: ",len(fruits))
+	fmt.Println("Capacidad: ",cap(fruits))
+	*/
+	fruits := []string {}
+	fmt.Println("Fruist: ", fruits)
+	fmt.Println("Tamano: ",len(fruits))
+	fmt.Println("Capacidad: ",cap(fruits))
+	fmt.Println(fruits == nil)
+
+-- 3.5 Maps --
+Los mapas son estructuras de tipo valor.
+Es obligatorio que el ultimo valor tenga una coma
+Podemos eliminar elementos tambien con un map.
+Si buscamos un elemento que no esta en el mapa, nos regresa un string vacio.
+(Go) puede retornar diferentes valores.
+Pero cuado ponemos animals ["gorilla"] nos regresara dos valores:
+1) Contenido de gorilla 
+2) Si esa llave existe o no (siendo un valor booleano.)
+Para recibir cualquier cosa es con la función (ok).
+
+	animals := make(map[string]string)
+	animals["cat"] = "GATO"//Asi asiganmos valor al mapa
+	animals["dog"] = "PERRO"
+	fmt.Println(animals)
+
+	fruits := map[string]string{
+		"apple": "APPLE",
+		"banana": "BANANA",
+	}
+	fmt.Println(fruits)
+	//Eliminar
+	delete(fruits,"banana")
+	fmt.Println(fruits)
+	emoji, ok := animals["gorilla"]
+	fmt.Println(emoji, ok)
+	fmt.Println(animals["cat"])
+	//Hacemos un if utilizamos el identificar blank
+	if _,ok : = animals["gorilla"]; !ok {
+		animals["gorilla"] = "GORILLA"
+	}
+
+-- 3.6 Estructuras --
+Permiten almacenar una colección de campos [Siendo similar a las clases],
+para declarar la estructura es con (type "nombre" struct) entre llaves los valores.
+Indicamos los valores de los campos, sin tener que ponerlo en el course,
+pero seguimos el mismo orden.
+Si no asignamos un valor el string sera de forma vacia.
+type course struct {
+		Name      string
+		Profesor string
+		Country   string
+	}
+	//Forma 1
+	db := course{
+		Name:      "Base de datos",
+		Profesor: "Juan",
+		Country:   "Mexico",
+	}
+	//Forma 2
+	 /*git := course{"GIT","Armando","Bolivia"}
+	css := course{Profesor: "Pedro"} //Con esto nomas enviamos el nombre.
+	fmt.Printf("%+v\n",git)
+	fmt.Printf("%+v\n",css)
+	*/	
+	//%+v Para imprimir el nombre de los campos.
+	p := &db //almacenara un puntero en la base de datos,
+	//Operador de desreferencia se usa entre parentesis y con el . el cambio a actualizar.
+	p.Profesor = "Juan"
+	//No es necesario desreferenciar el punto simplemente se pone el lugar con punto.
+	fmt.Printf("%+v\n",db)
+	fmt.Printf("%+v\n",p)

@@ -1,0 +1,90 @@
+ -- 4.1 If --
+ No es necesario los parentesis dentro de la condición, pero todo lo demas es igual.
+ 	/*
+	emoji := "cactus"
+	if emoji == "cactus" {
+		fmt.Println("Es un Cactus")
+	} else if emoji == "cara" {
+		fmt.Println("Es una carita")
+	} else {
+		fmt.Printf("El emoji es: %s", emoji)
+	}
+	*/
+	if emoji := "😊"; emoji == "🌵"{
+		fmt.Println("Es un Cactus")
+
+	} else if emoji == "😊"{
+		fmt.Println("Es una carita")
+	} else {
+		fmt.Printf("El emoji es: %s", emoji)
+	}
+-- 4.2 Switch --
+A diferencia de los demas no se ocupa un break, para cambiar.
+/* Estructura del switch
+	switch expression {
+	case condition:
+	case condition:
+	default:
+	}
+	*/
+	emoji := "🍎"
+	switch  {
+
+	case emoji == "🐱" || emoji == "🐶":
+		fmt.Println("Es un gato")
+	
+	case emoji == "🍎" || emoji == "🍌":
+		fmt.Println("Es una fruta")
+
+	default:
+		fmt.Println("No es un animal ni una fruta")
+	}
+
+-- 4.3 For clásico --
+Solamente se pone una instrucción para ciclos y esa es con el puro For
+pero tiene diferentes sintaxis y estilos.
+no se ocupan los parentesis paa el for clasico.
+    for i := 0; i <= 10; i++ {
+		fmt.Println(i)
+	    }
+ 
+-- 4.4 For Continuo -- 
+En este declaramos la variable afuera del for para mostrar de otra manera: 
+    i := 1
+	for i <= 10{
+		fmt.Println(i)
+		i++
+	}
+
+ -- 4.5  For forever --
+ For que dura para siempre quitando la evolución evaluada
+ i := 1
+	for{
+		fmt.Println(i)
+		i++
+	}
+
+-- 4.6 For Range slice -- 
+	nums := []uint8{2,4,6,8}
+	for i :=range nums{
+		//iterar el slice y se ponga la palabra edteam por cada numero
+		nums[i] *= 2
+	}	
+	fmt.Println(nums)
+
+-- 4.7 For range maps --
+sports := map[string]string{"basketball": "🏀","soccer:": "⚽️"}
+
+	for key, v := range sports {
+		fmt.Println("Key: ",key,"Valor: ", v)
+	}
+
+-- 4.8 For range String --
+
+	hello := "Hello"
+	//Devuelve el indice y el valor, pero queremos que imprema los caracteres	
+	//Imprime numeros por que son los bytes asignados a esas letras
+	//Se utiliza el casting encerrarlo en un string
+	for _,v := range hello {
+		fmt.Println(string(v))
+	}
